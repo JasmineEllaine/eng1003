@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Simple</title>
+        
+        <link rel="stylesheet" href="styles/simple.css" type="text/css"/>        
+        <script src="scripts/simple.js" type="text/javascript"></script>
+        
+    </head>
+    
+    <body onload="resetId();">
+        <div>
+            <div class="headingBlock">
+                <h2>A Very <span id="simple">Simple</span> Web Application</h2>
+                <h4>Addition Only</h4>
+            </div>
+            
+            <div>
+                <input id="number1" type="text" size="4"/>
+        
+                <label><img src="images/green addition op.png" onClick="doIt()"></label>
+                
+                <input id="number2" type="text" size="4"/>
+        
+                <label><img src="images/green addition op.png" onClick="doIt()"></label>
+                
+                <input id="number3" type="text" size="4"/>
+                
+                <label><img src="images/blue equals op.png" onClick="doIt()"></label>
+                
+                <label id="answer"></label>
+
+                <label id="parity"></label>
+            </div>
+            
+            <div>
+                <button id="doIt" type="button" onClick="doIt()">Do It!</button>
+            </div>
+            <div>
+                &copy; <a href="http://monash.edu.au">Monash University</a>
+            </div>
+        </div>
+    </body>
+
+</html>
+
+<!-- HTML comment -->
