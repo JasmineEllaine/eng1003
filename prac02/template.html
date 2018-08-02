@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ENG1003 week 2 prac exercise template</title>
+        <style>
+            p {
+                padding: 5em;
+                font-family: arial;
+                font-size: 2em;
+                color: rgb(0, 0, 255);
+            }
+        </style>
+    </head>
+    
+    <body>
+        <p>In Chrome, hit F12 to view the Console.</p>
+    
+        <script>
+            // YOUR JAVASCRIPT CODE HERE
+            let a = 1, b = 5, c = 4;
+            root1 = (-b + Math.sqrt(b*b - 4*a*c))/(2*a);
+            root2 = (-b - Math.sqrt(b*b - 4*a*c))/(2*a);
+
+            console.log("x =", root1, ",", root2);
+
+
+            // Q2
+            let animalString = "cameldogcatlizard", andString = "and";
+            console.log(animalString.substring(8, 11), andString, animalString.substring(5, 8))
+
+
+            // Q3
+            let value = 11;
+ 
+            if (value >= 10) {
+                document,body.innerHTML = "value is greater than or equal to 10";
+            } else {
+                document.body.innerHTML = "value is less than 10";
+            }
+
+
+            // Q4
+            let number1, number2;
+
+            // RHS generates a random integer between 1 and 10 inclusive
+            number1 = Math.floor((Math.random() * 10) + 1);
+            // RHS generates a random integer between 1 and 10 inclusive
+            number2 = Math.floor((Math.random() * 10) + 1);
+            
+            console.log("number1 = " + number1 + " number2 = " + number2);
+            
+            // INSERT your code to swap the values in number1 and number2
+            [number1, number2] = [number2, number1]
+            console.log("number1 = " + number1 + " number2 = " + number2);
+
+
+            //Q5
+            let year = 2000;
+            let yearNot2015Or2016 = (year !== 2015) || (year !== 2016);
+            
+            console.log(yearNot2015Or2016);
+        </script>
+    </body>
+</html>
