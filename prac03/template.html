@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ENG1003 week 3 prac exercise template</title>
+        <style>
+            #outputArea {
+                padding: .25em;
+                border: solid black 2px;
+                margin: 3em;
+            
+                height: 20em;
+                width: 20em;
+            
+                overflow-y: scroll;
+            
+                font-family: consolas, 'courier new', monospace;
+                font-size: 1em;
+                color: rgb(50, 50, 250);
+            
+                background-color: rgb(225,225,225) ;
+            }
+        </style>
+
+    </head>
+    
+    <body>
+        <div id="outputArea"></div>
+
+        <script>
+            // PASTE YOUR CODE HERE
+            // Q1
+            let initRadius = 1, circumference, area, ratio;
+
+            circumference = 2*initRadius*Math.PI;
+            area = Math.PI*initRadius*initRadius;
+            ratio = area/circumference;
+
+            while (ratio < 30) {
+                console.log("Radius:", initRadius, ", ratio:", ratio);
+                initRadius++
+                circumference = 2*initRadius*Math.PI;
+                area = Math.PI*initRadius*initRadius;
+                ratio = area/circumference;
+            }
+
+            // Q2
+
+            let cnt1 = 0, cnt2 = 0, cnt3 = 0, cnt4 = 0, cnt5 = 0, cnt6 = 0;
+
+            let i = 0;
+            while (i < 60000) {
+                let random = Math.floor((Math.random() * 6) + 1);
+                if (random === 1) {
+                    cnt1++;
+                } else if (random === 2) {
+                    cnt2++;
+                } else if (random === 3) {
+                    cnt3++;
+                } else if (random === 4) {
+                    cnt4++;
+                } else if (random === 5) {
+                    cnt5++;
+                } else {
+                    cnt6++;
+                }
+                i++
+            }
+
+            console.log("1:", cnt1)
+            console.log("2:", cnt2)
+            console.log("3:", cnt3)
+            console.log("4:", cnt4)
+            console.log("5:", cnt5)
+            console.log("6:", cnt6)
+        </script>
+    </body>
+</html>
