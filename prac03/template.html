@@ -30,26 +30,33 @@
         <script>
             // PASTE YOUR CODE HERE
             // Q1
-            let initRadius = 1, circumference, area, ratio;
+            console.log("Question 1");
+            let radius = 1, ratio;
 
-            circumference = 2*initRadius*Math.PI;
-            area = Math.PI*initRadius*initRadius;
-            ratio = area/circumference;
+            function getCircumference(rad) {
+                return 2*rad*Math.PI;
+            }
 
+            function getArea(rad) {
+                return Math.PI*rad*rad;
+            }
+
+            function getRatio(rad) {
+                return getArea(rad)/getCircumference(rad);
+            }
+            
+            ratio = getRatio(radius);
             while (ratio < 30) {
-                console.log("Radius:", initRadius, ", ratio:", ratio);
-                initRadius++
-                circumference = 2*initRadius*Math.PI;
-                area = Math.PI*initRadius*initRadius;
-                ratio = area/circumference;
+                console.log("Radius:", radius + ",", "ratio:", ratio);
+                radius++;
+                ratio = getRatio(radius);
             }
 
             // Q2
-
-            let cnt1 = 0, cnt2 = 0, cnt3 = 0, cnt4 = 0, cnt5 = 0, cnt6 = 0;
-
-            let i = 0;
-            while (i < 60000) {
+            console.log("\nQuestion 2");
+            let cnt1 = cnt2 = cnt3 = cnt4 = cnt5 = cnt6 = 0;
+            
+            for (let i = 0; i < 60000; i++) {
                 let random = Math.floor((Math.random() * 6) + 1);
                 if (random === 1) {
                     cnt1++;
@@ -64,15 +71,67 @@
                 } else {
                     cnt6++;
                 }
-                i++
+            }
+            
+            console.log("1:", cnt1);
+            console.log("2:", cnt2);
+            console.log("3:", cnt3);
+            console.log("4:", cnt4);
+            console.log("5:", cnt5);
+            console.log("6:", cnt6);
+
+            // Q3
+            console.log("\nQuestion 3");
+
+            function printFreq(listName) {
+                for (let i = 1; i < 7; i++) {
+                    console.log(i + ":", listName[i]);
+                }
             }
 
-            console.log("1:", cnt1)
-            console.log("2:", cnt2)
-            console.log("3:", cnt3)
-            console.log("4:", cnt4)
-            console.log("5:", cnt5)
-            console.log("6:", cnt6)
+            function fillBitList(bitList, totalRolls) {
+                for (let i = 0; i < totalRolls; i++) {
+                    let random = Math.floor((Math.random() * 6) + 1);
+                    bitList[random]++;
+                }
+                return bitList;
+            }
+
+            let cnt = fillBitList([0, 0, 0, 0, 0, 0, 0], 60000);
+            printFreq(cnt);
+
+            // Q4
+            console.log("\nQuestion 4");
+            function isMoreThanExpected(totalRolls, totalInput, currInput, inputRolls) {
+                expected = totalRolls/totalInput;   // eg. 10 000 rolls per number
+                delta = expected*0.01;              // gets 1%
+                inputDelta = Math.abs(inputRolls - expected);
+                return inputDelta > delta;
+            }
+
+            let diceRolls = {
+                frequencyArray: [0, 0, 0, 0, 0, 0, 0],
+                totalRolls: 60000,
+                exceptions: ""
+            };
+
+            diceRolls.frequencyArray = fillBitList(diceRolls.frequencyArray, diceRolls.totalRolls);
+            printFreq(diceRolls.frequencyArray);
+
+            exceptString = "" 
+            for (let i = 1; i < 7; i++) {
+                if (isMoreThanExpected(diceRolls.totalRolls, 6, i, diceRolls.frequencyArray[i])) {
+                    if (exceptString === "") {
+                        exceptString = i;
+                    } else {
+                        exceptString += " " + i;
+                    }
+                }
+            }
+
+            diceRolls.exceptions = exceptString;
+            console.log("Exception:", diceRolls.exceptions);
+
         </script>
     </body>
 </html>
