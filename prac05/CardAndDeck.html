@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>ENG1003 Prac Week 5 - Card and Deck</title>
+    <style>
+        #outputArea {
+            padding: .25em;
+            border: solid black 2px;
+            margin: 3em;
+            
+            height: 20em;
+            width: 40em;
+            
+            overflow-y: scroll;
+            
+            font-family: consolas, 'courier new', monospace;
+            font-size: 1em;
+            color: rgb(50, 50, 250);
+            
+            background-color: rgb(225,225,225) ;
+            
+            float: left;
+        }
+        
+        p {
+            color: green;
+        }
+        
+    </style>
+
+    </head>
+    
+    <body>
+        <div id="outputArea"></div>
+
+        <script>
+
+            // Class Constructors
+            // ========================================================
+                 
+            // Card class
+            // ----------
+            //
+            class Card
+            {
+                constructor(value, suit)
+                {
+                    // Private attributes:
+                
+                    this._value = value;   // Integer value 1-13 inclusive
+                    this._suit = suit;     // Integer value 1-4 inclusive
+                }
+                
+                // Public methods:
+                
+                get value()
+                {
+                    return this._value;
+                }
+                
+                set value(newValue)
+                {
+                    if (newValue >= 1 && newValue <= 13)
+                    {
+                        this._value = newValue;
+                    }
+                }
+                                
+                toString()
+                {
+                    return "The " + this._getValueName() + " of " + this._getSuitName();  
+                }
+                
+                // Private methods:
+                
+                _getValueName()
+                {
+                    let valueLookup = ["", "ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king" ];
+                    return valueLookup[this._value];
+                }    
+            }    
+
+
+            // Deck class
+            // ----------
+            //
+            class Deck
+            {
+                // Private attributes:
+                constructor()
+                {
+                    this._cards = [];
+
+                    // Put your code to populate the cards array here
+                    
+                }
+                
+                // Public methods:
+
+                shuffle()
+                {
+                    let card2Index;
+                    let tempCard;
+                
+                    // For each card in deck array, swap it with another card
+                    // at a random position in the array.
+                    for (let card1Index = 0; card1Index < this._cards.length; card1Index++)
+                    {
+                        card2Index = Math.floor(Math.random() * this._cards.length);
+                        
+                        // Swap 'em
+                        tempCard = this._cards[card1Index];
+                        this._cards[card1Index] = this._cards[card2Index] ;
+                        this._cards[card2Index] = tempCard;
+                    }
+                }
+                
+                // This method should remove the next card from the Deck and 
+                // return it.  If called when the Deck is empty it should
+                // return null.
+                dealCard()
+                {
+                    // Put your code to deal a card here
+                    
+                }
+            }
+            
+            let outputAreaRef = document.getElementById("outputArea");
+            let output = "";    
+
+            //exerciseCard();
+            //exerciseDeck();
+            
+            outputAreaRef.innerHTML = output;    
+
+            
+            function exerciseCard()
+            {
+                let card1 = new Card(7, 2);
+                output += card1.toString();
+            }
+            
+            function exerciseDeck()
+            {
+                let deck1 = new Deck();
+                
+                deck1.shuffle();
+                
+                // Note: this assumes there are 52 cards in the deck.
+                for (let i = 1; i <= 52; i++)
+                {
+                    output += deck1.dealCard() + "<br/>";
+                }
+                
+            }
+
+
+        </script>
+    </body>
+</html>
