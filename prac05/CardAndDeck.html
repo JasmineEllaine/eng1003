@@ -66,6 +66,20 @@
                         this._value = newValue;
                     }
                 }
+
+                get suit() 
+                {
+                    return this._suit;
+                }
+
+                set suit(newSuit)
+                {
+                    if (newSuit >= 1 && newSuit <= 4)
+                    {
+                        this._suit = newSuit;
+                    }
+                }
+                  
                                 
                 toString()
                 {
@@ -78,9 +92,14 @@
                 {
                     let valueLookup = ["", "ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king" ];
                     return valueLookup[this._value];
-                }    
-            }    
+                }        
 
+                _getSuitName()
+                {
+                    let valueLookup = ["", "clubs", "diamonds", "hearts", "spades"];
+                    return valueLookup[this._suit];
+                }    
+            }   
 
             // Deck class
             // ----------
@@ -93,8 +112,17 @@
                     this._cards = [];
 
                     // Put your code to populate the cards array here
-                    
+                    let cardNo = 0;
+                    while (cardNo < 52) {
+                        for (let i = 1; i < 5; i++) {
+                            for (let j = 1; j < 14; j++) {
+                                this._cards[cardNo] = new Card(j,i);
+                                cardNo++
+                            }
+                        }      
+                    }
                 }
+                    
                 
                 // Public methods:
 
@@ -122,18 +150,24 @@
                 dealCard()
                 {
                     // Put your code to deal a card here
-                    
+                    let cardsRemaining = this._cards.length;
+                    if (cardsRemaining > 0) {
+                        let cardReturn = this._cards[cardsRemaining-1];
+                        this._cards.splice(cardsRemaining-1, 1);
+                        return cardReturn;
+                    } else {
+                        return null;
+                    }
                 }
             }
             
             let outputAreaRef = document.getElementById("outputArea");
             let output = "";    
 
-            //exerciseCard();
-            //exerciseDeck();
+            // exerciseCard();
+            exerciseDeck();
             
             outputAreaRef.innerHTML = output;    
-
             
             function exerciseCard()
             {
@@ -152,10 +186,7 @@
                 {
                     output += deck1.dealCard() + "<br/>";
                 }
-                
             }
-
-
         </script>
     </body>
 </html>
