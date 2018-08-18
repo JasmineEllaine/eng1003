@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <!-- treat as a web app -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+
+        <!-- import MDL -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+        <!-- Conversion -->
+        <script src="conversion.js"></script>
+
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Length</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" href="length.html">Length</a>
+                <a class="mdl-navigation__link" href="mass.html">Mass</a>
+                </nav>
+            </div>
+            </header>
+            <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Change Conversion</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="length.html">Length</a>
+                <a class="mdl-navigation__link" href="mass.html">Mass</a>
+            </nav>
+            </div>
+            <main class="mdl-layout__content">
+            <div class="page-content"><!-- Your content goes here -->
+                <!-- Added responsive grid -->
+                <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <!-- Numeric Textfield with Floating Label -->
+                            <h4>Centimetres to Inches</h4>
+                            <form action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cmToInchValue">
+                                <label class="mdl-textfield__label" for="cmToInchValue">Centimetres...</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                                </div>
+                            </form>
+                            <p>Inches:<br />
+                                <span id="cmToInchResult"></span>
+                            </p>
+
+                            <!-- Raised button with ripple -->
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="toInches()">
+                                Convert to Inches
+                            </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <!-- Numeric Textfield with Floating Label -->
+                            <h4>Inches to Centimetres</h4>
+                            <form action="#">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="InchToCMValue">
+                                <label class="mdl-textfield__label" for="InchToCMValue">Inches...</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                                </div>
+                            </form>
+                            <p>Centimetres:<br />
+                                <span id="InchToCMResult"></span>
+                            </p>
+
+                            <!-- Raised button with ripple -->
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="toCentimetres()">
+                                Convert to Centimetres
+                            </button>
+                        </div>
+            </div>
+            </main>
+        </div>
+  </body>
+</html>
