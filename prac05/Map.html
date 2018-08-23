@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet'/>
+  </head>
+  <body>
+    <button onclick="panToMonashClayton()"> Pan to Monash Clayton </button>
+    <button onclick="showPath()"> Show path </button>
+    <button onclick="showPolygon()"> Show polygon </button>
+    <div id='map'></div>
+    <script>
+    
+        // This should be your own API key
+        mapboxgl.accessToken = 'pk.eyJ1IjoiamFzbWluZWIiLCJhIjoiY2psNjM4MjJyMnRqZjNwbDduZmIxcjBoOCJ9.mVKc9NLDbqV1Bk0Df2uXqA';
+    
+        let caulfield = [145.0420733, -37.8770097];
+    
+        let map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v10',
+            zoom: 16,
+            center: caulfield
+        });
+
+        // Code added here will run whenthe page loads.
+        // Initialise markers
+        let monashSport = {
+            label: "Monash Sport",
+            position: [145.1362585, -37.9128781],
+        };
+        let medicineFaculty = {
+            label: "Faculty of Medicine",
+            position: [145.1308405, -37.912641]
+        };
+        let engineeringFaculty = {
+            label: "Faculty of Engineering",
+            position: [145.1338553, -37.9092552]
+        };
+        let campusCentre = {
+            label: "Campus Centre",
+            position: [145.1329004, -37.9118667]
+        };
+        let locationObjects = [monashSport, medicineFaculty, engineeringFaculty, campusCentre];
+
+        // Add markers
+        for (let i = 0; i < locationObjects.length; i++) {
+            let name = new mapboxgl.Popup()
+            .setText(locationObjects[i].label);
+
+            let marker = new mapboxgl.Marker()
+            .setLngLat(locationObjects[i].position)
+            .setPopup(name)
+            .addTo(map);
+            name.addTo(map);
+        }
+
+        function panToMonashClayton()
+        {    
+            // Code added here will run when the "Pan to Monash Clayton" button is clicked.
+            let monashClayton = new mapboxgl.LngLat(145.1343136,-37.9110467);
+            map.panTo(monashClayton);
+        }
+    
+        function showPath()
+        {
+            // Code added here will run when the "Show Path" button is clicked.
+            map.removeLayer("polygon");
+            map.addLayer({
+                "id": "route",
+                "type": "line",
+                "source": {
+                    "type": "geojson",
+                    "data": {
+                        "type": "Feature",
+                        "properties": {},
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": [
+                                campusCentre.position,
+                                engineeringFaculty.position,
+                                medicineFaculty.position,
+                                monashSport.position
+                            ]
+                        }
+                    }
+                },
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": "#888",
+                    "line-width": 8
+                }
+            });
+        }
+    
+        function showPolygon()
+        {
+            // Code added here will run when the "Show Polygon" button is clicked.
+            map.removeLayer("route");
+            map.addLayer({
+                'id': 'polygon',
+                'type': 'fill',
+                'source': {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [[
+                            campusCentre.position,
+                            engineeringFaculty.position,
+                            medicineFaculty.position,
+                            monashSport.position,
+                            campusCentre.position
+                            ]]
+                        }
+                    }
+                },
+                'layout': {},
+                'paint': {
+                    'fill-color': '#088',
+                    'fill-opacity': 0.8
+                }
+            });
+        }
+
+        // This function checks whether there is a map layer with id matching 
+        // idToRemove.  If there is, it is removed.
+        function removeLayerWithId(idToRemove)
+        {
+            let hasPoly = map.getLayer(idToRemove)
+            if (hasPoly !== undefined)
+            {
+                map.removeLayer(idToRemove)
+                map.removeSource(idToRemove)
+            }
+        }
+
+    </script>
+
+  </body>
+</html>
