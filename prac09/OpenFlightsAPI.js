@@ -42,7 +42,7 @@ let data = {
     sourceAirport: "LAX",
     callback: "routesResponse"
 };
-jsonpRequest("http://eng1003.monash/OpenFlights/routes/", data);
+jsonpRequest("https://eng1003.monash/OpenFlights/routes/", data);
 
 function jsonpRequest(url, data)
 {
@@ -85,6 +85,11 @@ function routesResponse(routesArray)
     // TODO: Part 1 - Add code here to iterate over the 'routes' array and
     //       create HTML list items for each route, as below.
     //
+    for (let i = 0; i < routes.length; ++i)
+    {
+        listHTML += "<tr> <td onmousedown=\"listRowTapped("+i+")\" class=\"full-width mdl-data-table__cell--non-numeric\">" + routes[i].sourceAirport + " &rarr; " + routes[i].destinationAirport;
+        listHTML += "<div class=\"subtitle\">" + routes[i].airline + ", Stops: " + routes[i].stops +"</div></td></tr>";
+    }
     // HTML format of list item is:
     //
     //   <tr> <td onmousedown=\"listRowTapped("+i+")\" class=\"full-width mdl-data-table__cell--non-numeric\">"[SOURCE AIRPORT] -> [DEST AIRPORT]
@@ -92,9 +97,6 @@ function routesResponse(routesArray)
     //
     // And sample JavaScript code that would generate the HTML above is:
     //
-    //listHTML += "<tr> <td onmousedown=\"listRowTapped("+i+")\" class=\"full-width mdl-data-table__cell--non-numeric\">" + sourceAirport + " &rarr; " + destinationAirport;
-    //listHTML += "<div class=\"subtitle\">" + airlineCode + ", Stops: " + numberOfStops +"</div></td></tr>";
-
 
     // Insert the list view elements into the flights list.
     flightsListElement.innerHTML = listHTML;
@@ -113,5 +115,11 @@ function listRowTapped(routeIndex)
     console.log(routes[routeIndex].destinationAirport + "(" + routes[routeIndex].destinationAirportId + ")");
 
     // TODO: Part 2 - Add code here to request airport information.
-    //       The request should call airportRequest() when successful.
+    //       The request should call the airportResponse function when successful.
+    let url = "https://eng1003.monash/OpenFlights/airport/"
+    let data = {
+        id: routes[routeIndex].destinationAirportId,
+        callback: "airportResponse"
+    }
+    jsonpRequest(url, data);
 }
