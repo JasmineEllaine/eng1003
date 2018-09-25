@@ -51,7 +51,7 @@
                                     <tr>
                                         <td>
                                             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="useAddress">
-                                                <input type="checkbox" id="useAddress" class="mdl-checkbox__input">
+                                                <input type="checkbox" id="useAddress" class="mdl-checkbox__input" onclick="getAddress()">
                                                 <span class="mdl-checkbox__label">Automatically determine my address</span>
                                             </label>
                                         </td>
@@ -105,13 +105,13 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <button class="mdl-button mdl-js-button mdl-button--raised">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised" onclick="saveForm()">
                                                 Save
                                             </button>
 
                                             &nbsp;
 
-                                            <button class="mdl-button mdl-js-button mdl-button--raised">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised" onclick="clearForm()">
                                                 Clear
                                             </button>
                                         </td>
