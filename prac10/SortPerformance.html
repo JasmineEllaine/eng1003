@@ -48,6 +48,8 @@
                 background-color: rgb(225,225,225) ;
             }
         </style>
+        <script src="BubbleSort.js"></script>
+        <script src="SelectionSort.js"></script>
     </head>
     
     <body>
@@ -71,6 +73,7 @@
                 // Generate two identical arrays of ARRAY_SIZE random integers.
                 let arr1 = [];
                 let arr2 = [];
+                let arr3 = [];
             
                 // TODO: You need to set up the third array and make sure it
                 //       is populated in the loop.
@@ -83,6 +86,7 @@
                     // We make sure both arrays have the same contents!
                     arr1.push(value);
                     arr2.push(value);
+                    arr3.push(value);
                 }
 
                 quickSort(arr1);
@@ -93,6 +97,8 @@
                 
                 // TODO: You need to call bubble sort and print a message 
                 //       after completion.
+                bubbleSort(arr3);
+                outputArea.innerHTML += "Bubble Sort - done.<br/>";
 
                 outputArea.innerHTML += "Testing completed for ARRAY_SIZE=" + ARRAY_SIZE + ". You may now stop the Google Chrome Profiler and review the results.";
             }
