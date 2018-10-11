@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>ENG1003 Prac Week 11 &mdash; Logic and JavaScript</title>
+    </head>
+ 
+    <body>
+        <h1>Week 11 prac: Truth Table for Activity 3</h1>
+        <hr/>
+	<div id="outputArea"></div> 
+        <script>
+
+            // TODO: Insert your code here. 
+            // XY+XY’ + X'(Z+X + XZ’)
+            let outputAreaRef = document.getElementById("outputArea");
+            let tableHTML = "<table border=\"1\"><tr><th>X</th><th>Y</th><th>Z</th><th>XY+XY’ + X'(Z+X + XZ’)</th></tr>";
+
+            let states = [false, true];
+
+            for (let aIndex = 0; aIndex < states.length; ++aIndex)
+            {
+                for (let bIndex = 0; bIndex < states.length; ++bIndex)
+                {
+                    for (let cIndex = 0; cIndex < states.length; ++cIndex)
+                    {
+                        let X = states[aIndex];
+                        let Y = states[bIndex];
+                        let Z = states[cIndex];
+                        // XY+XY’ + X'(Z+X + XZ’)
+                        let A = X&&Y || X&&!Y || !X&&(Z||X || X&&!Z);
+                        
+                        tableHTML += "<tr>";
+                        tableHTML += "<td>" + X + "</td>";
+                        tableHTML += "<td>" + Y + "</td>";
+                        tableHTML += "<td>" + Z + "</td>";
+                        tableHTML += "<td>" + A + "</td>";
+                        tableHTML += "</tr>";
+                    }
+                }
+            }
+
+            tableHTML += "</table>";
+            outputAreaRef.innerHTML = tableHTML;
+
+            // X + X'Z
+            tableHTML += "<br />"
+            tableHTML += "<table border=\"1\"><tr><th>A</th><th>B</th><th>C</th><th>X + X'Z</th></tr>";
+
+            for (let aIndex = 0; aIndex < states.length; ++aIndex)
+            {
+                for (let bIndex = 0; bIndex < states.length; ++bIndex)
+                {
+                    for (let cIndex = 0; cIndex < states.length; ++cIndex)
+                    {
+                        let X = states[aIndex];
+                        let Y = states[bIndex];
+                        let Z = states[cIndex];
+                        // X + X'Z
+                        let A = X || !X&&Z;
+                        
+                        tableHTML += "<tr>";
+                        tableHTML += "<td>" + X + "</td>";
+                        tableHTML += "<td>" + Y + "</td>";
+                        tableHTML += "<td>" + Z + "</td>";
+                        tableHTML += "<td>" + A + "</td>";
+                        tableHTML += "</tr>";
+                    }
+                }
+            }
+
+            tableHTML += "</table>";
+            outputAreaRef.innerHTML = tableHTML;
+
+
+            // BC + BC’ + BA
+            tableHTML += "<br />"
+            tableHTML += "<table border=\"1\"><tr><th>A</th><th>B</th><th>C</th><th>BC + BC’ + BA</th></tr>";
+
+            for (let aIndex = 0; aIndex < states.length; ++aIndex)
+            {
+                for (let bIndex = 0; bIndex < states.length; ++bIndex)
+                {
+                    for (let cIndex = 0; cIndex < states.length; ++cIndex)
+                    {
+                        let A = states[aIndex];
+                        let B = states[bIndex];
+                        let C = states[cIndex];
+                        // BC + BC’ + BA
+                        let Z = B&&C || B&&!C || B&&A;
+                        
+                        tableHTML += "<tr>";
+                        tableHTML += "<td>" + A + "</td>";
+                        tableHTML += "<td>" + B + "</td>";
+                        tableHTML += "<td>" + C + "</td>";
+                        tableHTML += "<td>" + Z + "</td>";
+                        tableHTML += "</tr>";
+                    }
+                }
+            }
+
+            tableHTML += "</table>";
+            outputAreaRef.innerHTML = tableHTML;
+            
+            // B
+            tableHTML += "<br />"
+            tableHTML += "<table border=\"1\"><tr><th>A</th><th>B</th><th>C</th><th>B</th></tr>";
+
+            for (let aIndex = 0; aIndex < states.length; ++aIndex)
+            {
+                for (let bIndex = 0; bIndex < states.length; ++bIndex)
+                {
+                    for (let cIndex = 0; cIndex < states.length; ++cIndex)
+                    {
+                        let A = states[aIndex];
+                        let B = states[bIndex];
+                        let C = states[cIndex];
+                        // B
+                        let Z = B;
+                        
+                        tableHTML += "<tr>";
+                        tableHTML += "<td>" + A + "</td>";
+                        tableHTML += "<td>" + B + "</td>";
+                        tableHTML += "<td>" + C + "</td>";
+                        tableHTML += "<td>" + Z + "</td>";
+                        tableHTML += "</tr>";
+                    }
+                }
+            }
+
+            tableHTML += "</table>";
+            outputAreaRef.innerHTML = tableHTML;
+
+
+            // AB + A’B’C + ABC’
+            tableHTML += "<br />"
+            tableHTML += "<table border=\"1\"><tr><th>A</th><th>B</th><th>C</th><th>AB + A’B’C + ABC’</th></tr>";
+
+            for (let aIndex = 0; aIndex < states.length; ++aIndex)
+            {
+                for (let bIndex = 0; bIndex < states.length; ++bIndex)
+                {
+                    for (let cIndex = 0; cIndex < states.length; ++cIndex)
+                    {
+                        let A = states[aIndex];
+                        let B = states[bIndex];
+                        let C = states[cIndex];
+                        // AB + A’B’C + ABC’
+                        let Z = A&&B || !A&&!B&&C || A&&B&&!C;
+                        
+                        tableHTML += "<tr>";
+                        tableHTML += "<td>" + A + "</td>";
+                        tableHTML += "<td>" + B + "</td>";
+                        tableHTML += "<td>" + C + "</td>";
+                        tableHTML += "<td>" + Z + "</td>";
+                        tableHTML += "</tr>";
+                    }
+                }
+            }
+
+            tableHTML += "</table>";
+            outputAreaRef.innerHTML = tableHTML;
+
+
+            // (AB + C)’ + B’C
+            tableHTML += "<br />"
+            tableHTML += "<table border=\"1\"><tr><th>A</th><th>B</th><th>C</th><th>(AB + C)’ + B’C</th></tr>";
+
+            for (let aIndex = 0; aIndex < states.length; ++aIndex)
+            {
+                for (let bIndex = 0; bIndex < states.length; ++bIndex)
+                {
+                    for (let cIndex = 0; cIndex < states.length; ++cIndex)
+                    {
+                        let A = states[aIndex];
+                        let B = states[bIndex];
+                        let C = states[cIndex];
+                        // (AB + C)’ + B’C
+                        let Z = !(A&&B || C) || !B&&C;
+                        
+                        tableHTML += "<tr>";
+                        tableHTML += "<td>" + A + "</td>";
+                        tableHTML += "<td>" + B + "</td>";
+                        tableHTML += "<td>" + C + "</td>";
+                        tableHTML += "<td>" + Z + "</td>";
+                        tableHTML += "</tr>";
+                    }
+                }
+            }
+
+            tableHTML += "</table>";
+            outputAreaRef.innerHTML = tableHTML;
+
+        </script>
+    </body>
+</html>

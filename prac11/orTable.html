@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>ENG1003 Prac Week 11 &mdash; Logic and JavaScript</title>
+    </head>
+ 
+    <body>
+        <h1>Week 11 prac: Truth Table for OR</h1>
+        <hr/>
+	<div id="outputArea"></div> 
+        <script>
+
+            // TODO: Insert your code here. 
+            let outputAreaRef = document.getElementById("outputArea");
+            let tableHTML = "<table border=\"1\"><tr><th>A</th><th>B</th><th>A OR B</th></tr>";
+
+            let states = [false, true];
+
+            for (let aIndex = 0; aIndex < states.length; ++aIndex)
+            {
+                for (let bIndex = 0; bIndex < states.length; ++bIndex)
+                {
+                    let A = states[aIndex];
+                    let B = states[bIndex];
+                    let result = A || B;
+                    
+                    tableHTML += "<tr>";
+                    tableHTML += "<td>" + A + "</td>";
+                    tableHTML += "<td>" + B + "</td>";
+                    tableHTML += "<td>" + result + "</td>";
+                    tableHTML += "</tr>";
+                }
+            }
+
+            tableHTML += "</table>";
+            outputAreaRef.innerHTML = tableHTML;
+
+        </script>
+    </body>
+</html>
